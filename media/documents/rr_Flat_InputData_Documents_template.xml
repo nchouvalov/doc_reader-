@@ -1,0 +1,16 @@
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:output method="xml" omit-xml-declaration="yes" encoding="UTF-8" indent="yes"/>
+	<xsl:include href="rr_tDocument_template.xsl"/>
+	<xsl:template name="rr_Flat_InputData_Documents_template">
+		<xsl:param name="Documents"/>
+		<Documents>
+			<xsl:for-each select="$Documents/*[local-name()='Document']/*[local-name()='params']">
+				<Document>
+					<xsl:call-template  name="rr_tDocument_template">
+						<xsl:with-param name="Document"  select="."/>
+					</xsl:call-template>				
+				</Document>
+			</xsl:for-each>
+		</Documents>
+	</xsl:template>
+</xsl:stylesheet>

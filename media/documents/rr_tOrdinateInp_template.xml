@@ -1,0 +1,32 @@
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:output method="xml" omit-xml-declaration="yes" encoding="UTF-8" indent="yes"/>
+	<!--<xsl:include href="rr_dGeopointOpred_template.xsl"/>-->
+	<xsl:template name="rr_tOrdinateInp_template">
+		<xsl:param name="NewOrdinate"/>
+		<NewOrdinate>
+			<X>
+				<xsl:value-of  select="$NewOrdinate/*[local-name()='X']"/>
+			</X>
+			<Y>
+				<xsl:value-of  select="$NewOrdinate/*[local-name()='Y']"/>
+			</Y>
+			<NumGeopoint>
+				<xsl:value-of  select="$NewOrdinate/*[local-name()='NumGeopoint']"/>
+			</NumGeopoint>
+			<DeltaGeopoint>
+				<xsl:value-of  select="$NewOrdinate/*[local-name()='DeltaGeopoint']"/>
+			</DeltaGeopoint>
+			<PointPref>
+				<xsl:value-of  select="$NewOrdinate/*[local-name()='PointPref']"/>
+			</PointPref>
+			<GeopointOpred>
+				<xsl:call-template  name="rr_dGeopointOpred_template">
+					<xsl:with-param name="GeopointOpred"  select="$NewOrdinate/*[local-name()='GeopointOpred']/*[local-name()='params']"/>
+				</xsl:call-template>
+			</GeopointOpred>
+			<Formula>
+				<xsl:value-of  select="$NewOrdinate/*[local-name()='Formula']"/>
+			</Formula>
+		</NewOrdinate>
+	</xsl:template>
+</xsl:stylesheet>

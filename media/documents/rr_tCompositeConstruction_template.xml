@@ -1,0 +1,16 @@
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:output method="xml" omit-xml-declaration="yes" encoding="UTF-8" indent="yes"/>
+	<xsl:include href="rr_tCompositeConstruction_IncludedObject_template.xsl"/>	
+	<xsl:template name="rr_tCompositeConstruction_template">
+		<xsl:param name="CompositeConstruction"/>
+		<CompositeConstruction>
+			<xsl:for-each select="$CompositeConstruction/*[local-name()='IncludedObject']/*[local-name()='params']">
+				<IncludedObject>
+					<xsl:call-template  name="rr_tCompositeConstruction_IncludedObject_template">
+						<xsl:with-param name="IncludedObject"  select="."/>
+					</xsl:call-template>				
+				</IncludedObject>
+			</xsl:for-each>
+		</CompositeConstruction>
+	</xsl:template>
+</xsl:stylesheet>
